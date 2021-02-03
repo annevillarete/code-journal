@@ -1,0 +1,38 @@
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+header {
+  padding: 10px;
+  background-color: rgb(67, 150, 71);
+}
+
+h1 {
+  margin: 0 3%;
+  color: white;
+}
+
+label,
+input {
+  font-size: 12px;
+}
+
+#bio {
+  width: 100%;
+}
+
+.avatar-photo {
+  width: 300px;
+}
+
+.save-profile {
+  border-radius: 5px;
+  background-color: rgb(67, 150, 71);
+  color: white;
+  font-weight: bold;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
