@@ -21,11 +21,11 @@ input {
   font-size: 16px;
 }
 
-.btn-primary {
+#save-profile {
   background-color: rgb(67, 150, 71);
 }
 
-.btn-primary:hover {
+#save-profile:hover {
   background-color: white;
   color: green;
 }
