@@ -8,10 +8,21 @@
   <link rel="stylesheet" crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,54 +34,54 @@
     <div data-view="edit-profile"></div>
 
     <div class="container">
-
-      <div class="row">
-        <div class="column-full">
-
-          <h3>Edit Profile</h3>
+      <div class="row ">
+        <div class="py-3 col-sm">
+          <h3 id="edit-profile-title">Edit Profile</h3>
         </div>
       </div>
 
       <form id="edit-profile">
+
         <div class="row">
-          <div class="column-half">
-            <img class="avatar-photo" type="image" src="images/placeholder-image-square.jpg">
+          <div class="col-sm form-group">
+            <img class="img-thumbnail avatar-photo" type="image" src="images/placeholder-image-square.jpg">
           </div>
-          <div class="column-half">
-            <div class="column-half">
+
+
+          <div class="col-sm">
+            <div class="col-sm form-group">
               <label for="avatar">Avatar URL </label>
-              <input id="avatar-url" required name="Avatar URL" type="url">
+              <input class="form-control" id="avatar-url" required name="Avatar URL" type="url">
             </div>
-            <div class="column-half">
+
+            <div class="col-sm form-group">
               <label for="username">Username </label>
-              <input id="username" required name="Username" type="text">
+              <input class="form-control" id="username" required name="Username" type="text">            
             </div>
-            <div class="column-half">
+
+            <div class="col-sm form-group">
               <label for="fullName">Full Name </label>
-              <input id="fullName" required name="Full Name" type="text">
+              <input class="form-control" id="fullName" required name="Full Name" type="text">
             </div>
-            <div class="column-half">
+
+            <div class="col-sm form-group">
               <label for="location">Location </label>
-              <input id="location" name="Location" type="text">
+              <input class="form-control" id="location" name="Location" type="text">
             </div>
-          </div>
 
-          <div class="column-full">
-            <label for="bio">Bio </label>
-            <textarea id="bio" required name="Bio" rows="5"></textarea>
-          </div>
+            <div class="col-sm form-group">
+              <label for="bio">Bio </label>
+              <textarea class="form-control" id="bio" required name="Bio"></textarea>
+            </div>
 
+            <div class="col-sm form-group flex-end">
+              <button class="save-btn btn btn-primary" type="submit">SAVE</button>
+            </div>
 
-
-          <div class="column-full flex-end">
-            <button class="save-profile" type="submit">SAVE</button>
           </div>
         </div>
-
       </form>
     </div>
-
-
 
   </main>
   <script src="js/data.js"></script>
