@@ -12,7 +12,7 @@ h1 {
   color: white;
 }
 
-#edit-profile-title {
+.profile-header {
   font-weight: bold;
 }
 
