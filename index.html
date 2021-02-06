@@ -1,25 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
-  <link
-    rel="stylesheet"
-    crossorigin="anonymous"
+  <link rel="stylesheet" crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
+    <h1>Code Journal</h1>
   </header>
+
   <main>
     <div data-view="edit-profile"></div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="column-full">
+
+          <h3>Edit Profile</h3>
+        </div>
+      </div>
+
+      <form id="edit-profile">
+        <div class="row">
+          <div class="column-half">
+            <img class="avatar-photo" type="image" src="images/placeholder-image-square.jpg">
+          </div>
+          <div class="column-half">
+            <div class="column-half">
+              <label for="avatar">Avatar URL </label>
+              <input id="avatar-url" required name="Avatar URL" type="url">
+            </div>
+            <div class="column-half">
+              <label for="username">Username </label>
+              <input id="username" required name="Username" type="text">
+            </div>
+            <div class="column-half">
+              <label for="fullName">Full Name </label>
+              <input id="fullName" required name="Full Name" type="text">
+            </div>
+            <div class="column-half">
+              <label for="location">Location </label>
+              <input id="location" name="Location" type="text">
+            </div>
+          </div>
+
+          <div class="column-full">
+            <label for="bio">Bio </label>
+            <textarea id="bio" required name="Bio" rows="5"></textarea>
+          </div>
+
+
+
+          <div class="column-full flex-end">
+            <button class="save-profile" type="submit">SAVE</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
