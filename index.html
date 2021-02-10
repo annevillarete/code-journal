@@ -30,100 +30,105 @@
     <h1>Code Journal</h1>
   </header>
 
-  <main>
-
-    <div dataview="edit-profile" class="edit-profile-view container">
-      <div class="row ">
-        <div class="py-3 col-sm">
-          <h3 class="profile-header">Edit Profile</h3>
-        </div>
-      </div>
-
-      <form id="edit-profile">
-
-        <div class="row">
-          <div class="col-sm form-group">
-            <img class="img-thumbnail avatar-photo" type="image" src="images/placeholder-image-square.jpg">
-          </div>
-
-
-          <div class="col-sm">
-            <div class="col-sm form-group">
-              <label for="avatar">Avatar URL </label>
-              <input class="form-control" id="avatar-url" required name="Avatar URL" type="url">
-            </div>
-
-            <div class="col-sm form-group">
-              <label for="username">Username </label>
-              <input class="form-control" id="username" required name="Username" type="text">
-            </div>
-
-            <div class="col-sm form-group">
-              <label for="fullName">Full Name </label>
-              <input class="form-control" id="fullName" required name="Full Name" type="text">
-            </div>
-
-            <div class="col-sm form-group">
-              <label for="location">Location </label>
-              <input class="form-control" id="location" name="Location" type="text">
-            </div>
-
-            <div class="col-sm form-group">
-              <label for="bio">Bio </label>
-              <textarea class="form-control" id="bio" required name="Bio"></textarea>
-            </div>
-
-            <div class="col-sm form-group flex-end">
-              <button class="save-btn btn btn-primary" type="submit">SAVE</button>
-            </div>
-
-          </div>
-        </div>
-      </form>
-    </div>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-
-  <div dataview="profile" class="profile-view container">
-    <div class="row ">
+  <div dataview="edit-profile" id="edit-profile-view" class="container">
+    <div class="row">
       <div class="py-3 col-sm">
-        <h3 class="profile-header">Profile</h3>
+        <h3 class="header">Edit Profile</h3>
       </div>
     </div>
 
+    <form id="edit-profile">
 
       <div class="row">
         <div class="col-sm form-group">
-          <img class="img-thumbnail avatar-photo" type="image" src="images\blank-profile-picture-973460_1280.png">
+          <img class="img-thumbnail" type="image" src="images/placeholder-image-square.jpg">
         </div>
 
 
         <div class="col-sm">
-                <div class="col-sm form-group">
-            <label for="username">Username: User Name </label>
+          <div class="col-sm form-group">
+            <i class="fas fa-image"></i>
+            <label for="avatar">Avatar URL </label>
+            <input class="form-control" id="avatar-url" required name="Avatar URL" type="url">
           </div>
 
           <div class="col-sm form-group">
-            <label for="fullName">Full Name: FirstName LastName </label>
+            <i class="fas fa-user"></i>
+            <label for="username">Username </label>
+            <input class="form-control" id="username" required name="Username" type="text">
           </div>
 
           <div class="col-sm form-group">
-            <label for="location">Location: Irvine, CA </label>
+            <i class="fas fa-id-card"></i>
+            <label for="fullName">Full Name </label>
+            <input class="form-control" id="fullName" required name="Full Name" type="text">
           </div>
 
           <div class="col-sm form-group">
-            <label for="bio">Bio: Hello World! </label>
+            <i class="fas fa-map-marker-alt"></i>
+            <label for="location">Location </label>
+            <input class="form-control" id="location" name="Location" type="text">
           </div>
 
-          
+          <div class="col-sm form-group">
+            <i class="fas fa-comment"></i>
+            <label for="bio">Bio </label>
+            <textarea class="form-control" id="bio" required name="Bio"></textarea>
+          </div>
+
+          <div class="col-sm form-group flex-end">
+            <button class="save-btn btn btn-primary" type="submit">SAVE</button>
+          </div>
 
         </div>
       </div>
-    
+    </form>
   </div>
 
 
+  <div dataview="profile" id="profile-view-example" class="container">
+    <div class="form-group col">
+      <div class="py-3 col-sm">
+        <h3 class="header">View Profile</h3>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm form-group">
+          <img class="img-thumbnail" type="image" src="images\blank-profile-picture-973460_1280.png">
+        </div>
+
+
+        <div class="col-sm">
+          <div class="col-sm form-group">
+            <i class="fas fa-user"></i>
+            <label for="username">Username: </label>
+          </div>
+
+          <div class="col-sm form-group">
+            <i class="fas fa-id-card"></i>
+            <label for="fullName">Full Name: </label>
+          </div>
+
+          <div class="col-sm form-group">
+            <i class="fas fa-map-marker-alt"></i>
+            <label for="location">Location: </label>
+          </div>
+
+          <div class="col-sm form-group">
+            <i class="fas fa-comment"></i>
+            <label for="bio">Bio: </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+    <div dataview="profile" id="profile-view" class="container"></div>
+
+      <script src="js/data.js"></script>
+      <script src="js/main.js"></script>
 </body>
 
 </html>
