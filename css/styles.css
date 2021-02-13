@@ -35,10 +35,6 @@ input {
   justify-content: flex-end;
 }
 
-/* #edit-profile-view {
+.hidden {
   display: none;
-} */
-
-/* .avatar-photo {
-  max-width: 540px;
-} */
+}

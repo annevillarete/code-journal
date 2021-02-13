@@ -1,12 +1,12 @@
 var $avatarUrl = document.querySelector('#avatar-url');
 var $avatarPhoto = document.querySelector('.avatar-photo');
+var $form = document.querySelector('#edit-profile');
+var $dataEdit = document.querySelector('#edit-profile-view');
+var $profileView = document.querySelector('#profile-view');
 
 $avatarUrl.addEventListener('input', function (event) {
   $avatarPhoto.setAttribute('src', event.target.value);
-
 });
-
-var $form = document.querySelector('#edit-profile');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -15,11 +15,11 @@ $form.addEventListener('submit', function (event) {
   data.profile.location = $form.elements.Location.value;
   data.profile.avatarUrl = $form.elements['avatar-url'].value;
   data.profile.bio = $form.elements.bio.value;
-  $form.reset();
   $avatarPhoto.setAttribute('src', 'images/placeholder-image-square.jpg');
-});
+  $form.reset();
+  viewSwapping('profile');
 
-var $dataview = document.querySelector('#profile-view');
+});
 
 function renderProfile() {
   var $colFormgroup = document.createElement('div');
@@ -27,10 +27,15 @@ function renderProfile() {
 
   var $py3ColSm = document.createElement('div');
   $py3ColSm.setAttribute('class', 'py-3 col-sm');
-  $dataview.appendChild($py3ColSm);
+  $profileView.appendChild($py3ColSm);
 
-  var $fullName = document.createElement('h3');
-  $fullName.setAttribute('class', 'fas fa-id-card header');
+  var $viewProfile = document.createElement('h3');
+  $viewProfile.setAttribute('class', 'header row');
+  $viewProfile.textContent = 'View Profile';
+  $py3ColSm.appendChild($viewProfile);
+
+  var $fullName = document.createElement('h4');
+  $fullName.setAttribute('class', 'fas fa-id-card');
   $fullName.textContent = data.profile.fullName;
   $py3ColSm.appendChild($fullName);
 
@@ -51,18 +56,18 @@ function renderProfile() {
   $colSm.setAttribute('class', 'col-sm');
   $row.appendChild($colSm);
 
-  var $rowcolSmFormgroup = document.createElement('div');
-  $rowcolSmFormgroup.setAttribute('class', 'row col-sm form-group');
-  $colSm.appendChild($rowcolSmFormgroup);
+  var $colSmFormgroup2 = document.createElement('div');
+  $colSmFormgroup2.setAttribute('class', 'row col-sm form-group');
+  $colSm.appendChild($colSmFormgroup2);
 
   var $usernamelabel = document.createElement('i');
   $usernamelabel.setAttribute('class', 'fas fa-user form-group ');
-  $rowcolSmFormgroup.appendChild($usernamelabel);
+  $colSmFormgroup2.appendChild($usernamelabel);
 
   var $username = document.createElement('div');
   $username.setAttribute('class', 'col form-group ');
   $username.textContent = data.profile.username;
-  $rowcolSmFormgroup.appendChild($username);
+  $colSmFormgroup2.appendChild($username);
 
   var $colFormgroup3 = document.createElement('div');
   $colFormgroup3.setAttribute('class', 'row col-sm form-group ');
@@ -90,14 +95,32 @@ function renderProfile() {
   $bio.textContent = data.profile.bio;
   $colFormgroup4.appendChild($bio);
 
-  $row.appendChild($colSm);
-  $dataview.appendChild($colFormgroup);
-
-  return $colFormgroup;
-}
-
-for (var i = 0; i < data.profile.length; i++) {
-  var $profile = renderProfile(data[i]);
-  $dataview.appendChild($profile);
+  $profileView.appendChild($colFormgroup);
 
 }
+
+function viewSwapping(dataview) {
+
+  if (dataview === 'edit-profile') {
+    $dataEdit.className = 'container view';
+    data.view = dataview;
+    $form.reset();
+
+  } else if (dataview === 'profile') {
+    renderProfile();
+    $profileView.className = 'container view';
+    data.view = dataview;
+    $dataEdit.remove();
+    $form.reset();
+
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (data.profile.username === '') {
+    viewSwapping('edit-profile');
+  } else if (data.profile.username) {
+    viewSwapping('profile');
+  }
+
+});
