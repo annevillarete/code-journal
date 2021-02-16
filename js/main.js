@@ -147,3 +147,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
 // var $profileViewEditbutton = document.querySelector('#edit');
 // $profileViewEditbutton.addEventListener('click', function (event) {
 //   viewSwapping('edit-profile')
+
+document.addEventListener('click', function (event) {
+  event.preventDefault();
+
+});
