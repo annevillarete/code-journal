@@ -18,7 +18,6 @@ $form.addEventListener('submit', function (event) {
   $avatarPhoto.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
   viewSwapping('profile');
-
 });
 
 function renderProfile() {
@@ -34,7 +33,7 @@ function renderProfile() {
   $viewProfile.textContent = 'View Profile';
   $py3ColSm.appendChild($viewProfile);
 
-  var $fullName = document.createElement('h4');
+  var $fullName = document.createElement('h5');
   $fullName.setAttribute('class', 'fas fa-id-card');
   $fullName.textContent = data.profile.fullName;
   $py3ColSm.appendChild($fullName);
@@ -65,7 +64,7 @@ function renderProfile() {
   $colSmFormgroup2.appendChild($usernamelabel);
 
   var $username = document.createElement('div');
-  $username.setAttribute('class', 'col form-group ');
+  $username.setAttribute('class', 'col form-group');
   $username.textContent = data.profile.username;
   $colSmFormgroup2.appendChild($username);
 
@@ -87,7 +86,7 @@ function renderProfile() {
   $colSm.appendChild($colFormgroup4);
 
   var $bioIcon = document.createElement('i');
-  $bioIcon.setAttribute('class', 'fas fa-comment form-group ');
+  $bioIcon.setAttribute('class', 'fas fa-comment form-group');
   $colFormgroup4.appendChild($bioIcon);
 
   var $bio = document.createElement('div');
@@ -95,13 +94,34 @@ function renderProfile() {
   $bio.textContent = data.profile.bio;
   $colFormgroup4.appendChild($bio);
 
+  var $colFormgroup5 = document.createElement('div');
+  $colFormgroup5.setAttribute('class', 'row col-sm form-group');
+  $colSm.appendChild($colFormgroup5);
+
+  var $edit = document.createElement('div');
+  $edit.setAttribute('class', 'col-sm form-group flex-end');
+  $colFormgroup5.appendChild($edit);
+
+  var $editButton = document.createElement('button');
+  $editButton.setAttribute('class', 'save-btn btn save-btn:hover save-btn');
+  $editButton.setAttribute('id', 'edit-button');
+  $editButton.setAttribute('href', '#');
+  $editButton.setAttribute('data-view', 'edit-profile');
+  $editButton.textContent = 'EDIT';
+  $edit.appendChild($editButton);
+
   $profileView.appendChild($colFormgroup);
 
+  // $editButton.addEventListener('click', function (event) {
+  //   console.log($editButton)
+  //   viewSwapping('edit-profile');
+  // });
 }
 
 function viewSwapping(dataview) {
 
   if (dataview === 'edit-profile') {
+    renderProfile();
     $dataEdit.className = 'container view';
     data.view = dataview;
     $form.reset();
@@ -112,7 +132,6 @@ function viewSwapping(dataview) {
     data.view = dataview;
     $dataEdit.remove();
     $form.reset();
-
   }
 }
 
@@ -124,3 +143,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
 });
+
+// var $profileViewEditbutton = document.querySelector('#edit');
+// $profileViewEditbutton.addEventListener('click', function (event) {
+//   viewSwapping('edit-profile')
