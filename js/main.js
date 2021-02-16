@@ -86,7 +86,7 @@ function renderProfile() {
   $colSm.appendChild($colFormgroup4);
 
   var $bioIcon = document.createElement('i');
-  $bioIcon.setAttribute('class', 'fas fa-comment form-group');
+  $bioIcon.setAttribute('class', 'fabashs fa-comment form-group');
   $colFormgroup4.appendChild($bioIcon);
 
   var $bio = document.createElement('div');
