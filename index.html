@@ -26,9 +26,17 @@
 </head>
 
 <body>
+
+
   <header>
     <h1>Code Journal</h1>
   </header>
+
+  <nav id="navbar-profile" class="navbar-dark">
+    <div class="container">
+      <a class="btn navbar-profile-button" href="#">Profile <span class="sr-only">(current)</span></a>
+    </div>
+  </nav>
 
   <div dataview="edit-profile" id="edit-profile-view" class="container view">
     <div class="row">
@@ -37,11 +45,12 @@
       </div>
     </div>
 
-    <form id="edit-profile">
+    <form id="save-profile">
 
       <div class="row">
         <div class="col-sm form-group">
-          <img class="img-thumbnail avatar-photo" type="image" src="images/placeholder-image-square.jpg">
+          <img id="image-container" class="img-thumbnail view" type="image" src="images/placeholder-image-square.jpg">
+          <img class="img-thumbnail avatar-photo hidden" type="image">
         </div>
 
 
@@ -73,11 +82,11 @@
           <div class="col-sm form-group">
             <i class="fas fa-comment"></i>
             <label for="bio">Bio </label>
-            <textarea class="form-control" id="bio" required name="Bio"></textarea>
+            <input class="form-control" id="bio" required name="Bio">
           </div>
 
           <div class="col-sm form-group flex-end">
-            <button class="save-btn btn" type="submit">SAVE</button>
+            <button class="save-btn btn" id="save-button" type="submit">SAVE</button>
           </div>
 
         </div>
@@ -86,10 +95,11 @@
   </div>
 
 
-    <div dataview="profile" id="profile-view" class="container view"></div>
+  <div dataview="profile" id="profile-view" class="container view"></div>
 
-      <script src="js/data.js"></script>
-      <script src="js/main.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

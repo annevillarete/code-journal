@@ -15,7 +15,6 @@ h1 {
 h3,
 h5 {
   margin: 0 auto;
-  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .header {
@@ -48,5 +47,17 @@ input {
 }
 
 .view {
-  background-color: f9f9f9;
+  display: block;
+  background-color: #f9f9f9;
+}
+
+#navbar-profile {
+  background-color: rgb(64, 83, 104);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-profile-button {
+  color: white;
+  background-color: rgb(94, 186, 140);
+  font-size: larger;
 }
