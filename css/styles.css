@@ -4,7 +4,7 @@ body {
 
 header {
   padding: 10px;
-  background-color: rgb(67, 150, 71);
+  background-color: rgb(0, 25, 53);
 }
 
 h1 {
@@ -12,8 +12,14 @@ h1 {
   color: white;
 }
 
+h3,
+h5 {
+  margin: 0 auto;
+}
+
 .header {
   font-weight: bold;
+  padding: 10px;
 }
 
 label,
@@ -22,12 +28,13 @@ input {
 }
 
 .save-btn {
-  background-color: rgb(67, 150, 71);
+  background-color: rgb(242, 153, 46);
+  color: white;
 }
 
 .save-btn:hover {
-  background-color: white;
-  color: green;
+  background-color: rgb(217, 94, 64);
+  color: white;
 }
 
 .flex-end {
@@ -37,4 +44,20 @@ input {
 
 .hidden {
   display: none;
+}
+
+.view {
+  display: block;
+  background-color: #f9f9f9;
+}
+
+#navbar-profile {
+  background-color: rgb(64, 83, 104);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-profile-button {
+  color: white;
+  background-color: rgb(94, 186, 140);
+  font-size: larger;
 }
