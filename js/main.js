@@ -4,6 +4,14 @@ var $form = document.querySelector('#save-profile');
 var $dataEdit = document.querySelector('#edit-profile-view');
 var $profileView = document.querySelector('#profile-view');
 var $imageContainer = document.querySelector('#image-container');
+var $newEntryButton = document.querySelector('#new-entry-button');
+var $entriesButton = document.querySelector('#navbar-profile > div > a:nth-child(2)');
+var $entriesView = document.querySelector('#view-entries');
+var $createEntry = document.querySelector('#create-entry');
+var $imageURL = document.querySelector('#image-url');
+var $imagePreview = document.querySelector('#entry-image');
+var $profileButton = document.querySelector('#navbar-profile > div > a:nth-child(1)');
+var $formCreateEntry = document.querySelector('#form-add-entry');
 
 $avatarUrl.addEventListener('input', function (event) {
   $avatarPhoto.setAttribute('class', 'container view');
@@ -12,7 +20,6 @@ $avatarUrl.addEventListener('input', function (event) {
 });
 
 function viewSwapping(dataview) {
-
   if (dataview === 'edit-profile') {
     $dataEdit.className = 'container view';
     document.getElementById('username').setAttribute('value', data.profile.username);
@@ -25,7 +32,6 @@ function viewSwapping(dataview) {
     $profileView.className = 'container hidden';
     data.view = dataview;
     $form.reset();
-
   } else if (dataview === 'profile') {
     renderProfile();
     $profileView.className = 'container view';
@@ -44,18 +50,14 @@ $form.addEventListener('submit', function (event) {
   data.profile.bio = $form.elements.bio.value;
   $avatarPhoto.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-
   var $editProfileForm = document.querySelector('.editProfileContainer');
-
   if ($editProfileForm !== null) {
     $editProfileForm.remove();
   }
-
   viewSwapping('profile');
 });
 
 function renderProfile() {
-
   var containerdiv = document.createElement('div');
   containerdiv.className = 'editProfileContainer';
 
@@ -160,31 +162,63 @@ function renderProfile() {
 
 }
 
-var $profileButton = document.querySelector('#navbar-profile > div > a:nth-child(1)');
-
 $profileButton.addEventListener('click', function (event) {
   var $editProfileForm = document.querySelector('.editProfileContainer');
   if ($editProfileForm !== null) {
     $editProfileForm.remove();
-
   }
-
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
-  } else {
+  } else if (data.profile.username) {
     viewSwapping('profile');
+    $imageContainer.setAttribute('class', 'hidden');
+    $entriesView.className = 'hidden';
+    $createEntry.className = 'hidden';
   }
-
 });
 
 document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
-
   } else if (data.profile.username) {
     viewSwapping('profile');
     $imageContainer.setAttribute('class', 'hidden');
-
   }
+});
 
+$entriesButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  $createEntry.className = 'hidden';
+
+  if (data.profile.username === '') {
+    $entriesView.className = 'hidden';
+    $dataEdit.className = 'container view';
+    $profileView.className = 'hidden';
+  } else if (data.profile.username) {
+    $entriesView.className = 'container view';
+    $dataEdit.className = 'hidden';
+    $profileView.className = 'hidden';
+  }
+});
+
+$newEntryButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  $createEntry.className = 'container view';
+  $entriesView.className = 'hidden';
+});
+
+$imageURL.addEventListener('input', function (event) {
+  $imagePreview.setAttribute('class', 'container view');
+  $imagePreview.setAttribute('src', event.target.value);
+  $imageContainer.setAttribute('class', 'hidden');
+});
+
+$formCreateEntry.addEventListener('submit', function (event) {
+  event.preventDefault();
+  data.entries.imageUrl = $formCreateEntry.elements['image-url'].value;
+  data.entries.title = $formCreateEntry.elements.Title.value;
+  data.entries.notes = $formCreateEntry.elements.Notes.value;
+  $form.reset();
+  $entriesView.className = 'container view';
+  $createEntry.className = 'hidden';
 });

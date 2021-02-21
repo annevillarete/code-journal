@@ -35,6 +35,7 @@
   <nav id="navbar-profile" class="navbar-dark">
     <div class="container">
       <a class="btn navbar-profile-button" href="#">Profile <span class="sr-only">(current)</span></a>
+      <a class="btn navbar-profile-button" href="#">Entries</a>
     </div>
   </nav>
 
@@ -69,8 +70,8 @@
 
           <div class="col-sm form-group">
             <i class="fas fa-id-card"></i>
-            <label for="fullName">Full Name </label>
-            <input class="form-control" id="fullName" required name="Full Name" type="text">
+            <label for="fullName">Full Name </label>            <input class="form-control" id="fullName" required name="Full Name" type="text">
+
           </div>
 
           <div class="col-sm form-group">
@@ -96,6 +97,63 @@
 
 
   <div dataview="profile" id="profile-view" class="container view"></div>
+
+
+  <div dataview="entries" id="view-entries" class="container hidden">
+    <div class="row">
+      <div class="py-3 col-sm">
+        <h3 class="header">Entries</h3>
+      </div>
+    </div>
+    <div class="col-sm form-group flex-end">
+      <button class="save-btn btn" id="new-entry-button" type="submit">NEW</button>
+    </div>
+    </div>
+
+    <div dataview="entry" id="create-entry" class="container hidden">
+      <div class="row">
+        <div class="py-3 col-sm">
+          <h3 class="header">Create Entry</h3>
+        </div>
+      </div>
+  
+      <form id="form-add-entry">
+
+      <div class="row">
+        <div class="col-sm form-group">
+          <img id="entry-image" class="img-thumbnail view" type="image" src="images/placeholder-image-square.jpg">
+          <img class="img-thumbnail avatar-photo hidden" type="image">
+        </div>
+
+
+        <div class="col-sm">
+          <div class="col-sm form-group">
+            <i class="fas fa-image"></i>
+            <label for="imageURL">Image URL </label>
+            <input class="form-control" id="image-url" required name="ImageURL" type="url">
+          </div>
+
+          <div class="col-sm form-group">
+            <i class="fas fa-user"></i>
+            <label for="title">Title </label>
+            <input class="form-control" id="title" required name="Title" type="text">
+          </div>
+
+          <div class="col-sm form-group">
+            <i class="fas fa-comment"></i>
+            <label for="notes">Notes </label>
+            <textarea class="form-control" id="notes" required name="Notes"></textarea>
+          </div>
+
+          <div class="col-sm form-group flex-end">
+            <button class="save-btn btn" id="create-entry-button" href="#" type="submit">SAVE</button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
 
 
   <script src="js/data.js"></script>
