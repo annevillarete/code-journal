@@ -12,6 +12,7 @@ var $imageURL = document.querySelector('#image-url');
 var $imagePreview = document.querySelector('#entry-image');
 var $profileButton = document.querySelector('#navbar-profile > div > a:nth-child(1)');
 var $formCreateEntry = document.querySelector('#form-add-entry');
+var $entriesList = document.querySelector('#view-entries');
 
 $avatarUrl.addEventListener('input', function (event) {
   $avatarPhoto.setAttribute('class', 'container view');
@@ -48,6 +49,7 @@ $form.addEventListener('submit', function (event) {
   data.profile.location = $form.elements.Location.value;
   data.profile.avatarUrl = $form.elements['avatar-url'].value;
   data.profile.bio = $form.elements.bio.value;
+  localStorage.setItem('data', JSON.stringify(data));
   $avatarPhoto.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
   var $editProfileForm = document.querySelector('.editProfileContainer');
@@ -177,24 +179,22 @@ $profileButton.addEventListener('click', function (event) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  if (data.profile.username === '') {
-    viewSwapping('edit-profile');
-  } else if (data.profile.username) {
-    viewSwapping('profile');
-    $imageContainer.setAttribute('class', 'hidden');
-  }
-});
-
 $entriesButton.addEventListener('click', function (event) {
+  var $editProfileForm = document.querySelector('.editProfileContainer');
+  if ($editProfileForm !== null) {
+    $editProfileForm.remove();
+  }
   event.preventDefault();
   $createEntry.className = 'hidden';
 
   if (data.profile.username === '') {
+    // does not have a username
     $entriesView.className = 'hidden';
     $dataEdit.className = 'container view';
     $profileView.className = 'hidden';
-  } else if (data.profile.username) {
+  } else {
+    // has username
+    renderEntries();
     $entriesView.className = 'container view';
     $dataEdit.className = 'hidden';
     $profileView.className = 'hidden';
@@ -203,8 +203,11 @@ $entriesButton.addEventListener('click', function (event) {
 
 $newEntryButton.addEventListener('click', function (event) {
   event.preventDefault();
+  $formCreateEntry.reset();
   $createEntry.className = 'container view';
   $entriesView.className = 'hidden';
+  $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
+
 });
 
 $imageURL.addEventListener('input', function (event) {
@@ -212,13 +215,106 @@ $imageURL.addEventListener('input', function (event) {
   $imagePreview.setAttribute('src', event.target.value);
   $imageContainer.setAttribute('class', 'hidden');
 });
-
 $formCreateEntry.addEventListener('submit', function (event) {
   event.preventDefault();
-  data.entries.imageUrl = $formCreateEntry.elements['image-url'].value;
-  data.entries.title = $formCreateEntry.elements.Title.value;
-  data.entries.notes = $formCreateEntry.elements.Notes.value;
+  var data = {};
+
+  var entry = {};
+  entry.imageUrl = $formCreateEntry.elements['image-url'].value;
+  entry.title = $formCreateEntry.elements.Title.value;
+  entry.notes = $formCreateEntry.elements.Notes.value;
+
+  var profile = localStorage.getItem('data');
+  if (profile !== null) {
+    data = JSON.parse(profile);
+    data.entries.push(entry);
+
+    var entriesJSON = JSON.stringify(data);
+    localStorage.setItem('data', entriesJSON);
+  }
   $form.reset();
+  renderEntries();
   $entriesView.className = 'container view';
   $createEntry.className = 'hidden';
+});
+
+function renderEntries() {
+  var localStorageData = localStorage.getItem('data');
+  var entries = [];
+  var parsedLocalStorageData = {};
+  var containerdiv = document.createElement('div');
+  containerdiv.className = 'editProfileContainer';
+  var $editProfileForm = document.querySelector('.editProfileContainer');
+  if ($editProfileForm !== null) {
+    $editProfileForm.remove();
+  }
+
+  if (localStorageData !== null) {
+    parsedLocalStorageData = JSON.parse(localStorageData);
+    entries = parsedLocalStorageData.entries;
+    data.entries.push(parsedLocalStorageData);
+
+    for (var i = 0; i < entries.length; i++) {
+      // create elements for each entry
+      var $form2 = document.createElement('form');
+      $form2.setAttribute('id', 'edit-profile');
+
+      var $colFormgroup = document.createElement('div');
+      $colFormgroup.setAttribute('class', 'col form-group');
+      $form2.appendChild($colFormgroup);
+
+      var $py3ColSm = document.createElement('div');
+      $py3ColSm.setAttribute('class', 'py-3 col-sm');
+      containerdiv.appendChild($py3ColSm);
+
+      var $row = document.createElement('div');
+      $row.setAttribute('class', 'row');
+      $colFormgroup.appendChild($row);
+
+      var $colSmFormgroup = document.createElement('div');
+      $colSmFormgroup.setAttribute('class', 'col-sm form-group');
+      $row.appendChild($colSmFormgroup);
+
+      var $entryImage = document.createElement('img');
+
+      $entryImage.setAttribute('src', entries[i].imageUrl);
+      $entryImage.setAttribute('class', 'col img-thumbnail avatar-photo form-group');
+      $colSmFormgroup.appendChild($entryImage);
+
+      var $colSm = document.createElement('div');
+      $colSm.setAttribute('class', 'col-sm');
+      $row.appendChild($colSm);
+
+      var $colSmFormgroup2 = document.createElement('div');
+      $colSmFormgroup2.setAttribute('class', 'row col-sm form-group');
+      $colSm.appendChild($colSmFormgroup2);
+
+      var $titleEntry = document.createElement('div');
+      $titleEntry.setAttribute('class', 'col form-group ');
+      $titleEntry.textContent = entries[i].title;
+      $colSmFormgroup2.appendChild($titleEntry);
+
+      var $colFormgroup3 = document.createElement('div');
+      $colFormgroup3.setAttribute('class', 'row col-sm form-group ');
+      $colSm.appendChild($colFormgroup3);
+
+      var $notesEntry = document.createElement('div');
+      $notesEntry.setAttribute('class', 'col form-group ');
+      $notesEntry.textContent = entries[i].notes;
+      $colFormgroup3.appendChild($notesEntry);
+
+      containerdiv.appendChild($form2);
+
+    }
+  }
+  $entriesList.appendChild(containerdiv);
+}
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (data.profile.username === '') {
+    viewSwapping('edit-profile');
+  } else if (data.profile.username) {
+    viewSwapping('profile');
+    $imageContainer.setAttribute('class', 'hidden');
+  }
 });
