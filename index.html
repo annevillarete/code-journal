@@ -27,17 +27,22 @@
 
 <body>
 
-
   <header>
     <h1>Code Journal</h1>
   </header>
 
+
+
   <nav id="navbar-profile" class="navbar-dark">
     <div class="container">
       <a class="btn navbar-profile-button" href="#">Profile <span class="sr-only">(current)</span></a>
-      <a class="btn navbar-profile-button" href="#">Entries</a>
+      <a class="btn navbar-profile-button" href="#">Entries</a>     
     </div>
   </nav>
+
+  <div class="container">
+    <i class="far fa-comment-dots text-us">Need help? Text us at (714) 464 7851 </i>
+  </div>
 
   <div dataview="edit-profile" id="edit-profile-view" class="container view">
     <div class="row">
@@ -70,7 +75,7 @@
 
           <div class="col-sm form-group">
             <i class="fas fa-id-card"></i>
-            <label for="fullName">Full Name </label>            <input class="form-control" id="fullName" required name="Full Name" type="text">
+            <label for="fullName">Full Name </label> <input class="form-control" id="fullName" required name="Full Name" type="text">
 
           </div>
 
@@ -85,6 +90,8 @@
             <label for="bio">Bio </label>
             <input class="form-control" id="bio" required name="Bio">
           </div>
+
+
 
           <div class="col-sm form-group flex-end">
             <button class="save-btn btn" id="save-button" type="submit">SAVE</button>

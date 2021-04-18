@@ -61,3 +61,8 @@ input {
   background-color: rgb(94, 186, 140);
   font-size: larger;
 }
+
+.text-us {
+  /* color: white; */
+  font-size: small;
+}
